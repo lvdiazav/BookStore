@@ -11,7 +11,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,5 +48,22 @@ public class BookStoreController {
     public List<Book> getBorrowedBooks() {
         logger.info("get borrowed books working appropiately");
         return service.getBorrowedBooks();
+    }
+    
+    @PostMapping("/add/book")
+    public ResponseEntity<Book> addBook(@RequestBody Book book) {
+        service.addBook(book);
+        logger.info("adding book working appropiately, adding " + book);
+        return new ResponseEntity<>(book, HttpStatus.CREATED);
+    }
+    
+    @PostMapping("/add/member")
+    public ResponseEntity<Member> addMember(@RequestBody Member member) {
+        if (service.addMember(member)) {
+            logger.info("adding member working appropiately");
+            return new ResponseEntity<>(member, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_GATEWAY);
+        }
     }
 }

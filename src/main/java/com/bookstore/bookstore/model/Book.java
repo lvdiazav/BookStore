@@ -4,7 +4,6 @@
  */
 package com.bookstore.bookstore.model;
 
-import java.time.LocalDate;
 import lombok.Data;
 
 /**
@@ -18,16 +17,13 @@ public class Book {
     private static int counter;
     private String title;
     private String author;
-    private LocalDate dateBorrowed;
-    private LocalDate returnDate;
     private int amount;
 
     public Book(String title, String author) {
         this.id = ++Book.counter;
         this.title = title;
         this.author = author;
-        this.dateBorrowed = LocalDate.now();
-        this.returnDate = LocalDate.now().plusDays(14);
+        this.amount = 1;
     }
     
 }
