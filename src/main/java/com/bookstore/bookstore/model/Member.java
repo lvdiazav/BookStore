@@ -6,6 +6,7 @@ package com.bookstore.bookstore.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 
 /**
@@ -27,5 +28,30 @@ public class Member {
         this.age = age;
         this.borrowedBooks = new ArrayList<>();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Member other = (Member) obj;
+        if (this.age != other.age) {
+            return false;
+        }
+        return Objects.equals(this.name, other.name);
+    }
+    
     
 }

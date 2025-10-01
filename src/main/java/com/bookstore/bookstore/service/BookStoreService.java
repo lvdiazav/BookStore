@@ -8,6 +8,7 @@ import com.bookstore.bookstore.model.Book;
 import com.bookstore.bookstore.model.Member;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 /**
@@ -49,5 +50,25 @@ public class BookStoreService {
             BookStoreService.members.add(member);
             return true;
         }
+    }
+    
+    public Book findBookById(long id) {
+        Book b = null;
+        for (Book book : BookStoreService.books) {
+            if (book.getId() == id) {
+                b = book;
+            }
+        }
+        return b;
+    }
+    
+    public Member findMemberById(long id) {
+        Member m = null;
+        for (Member member : BookStoreService.members) {
+            if (member.getId() == id) {
+                m = member;
+            }
+        }
+        return m;
     }
 }

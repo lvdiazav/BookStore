@@ -4,6 +4,7 @@
  */
 package com.bookstore.bookstore.model;
 
+import java.util.Objects;
 import lombok.Data;
 
 /**
@@ -25,5 +26,30 @@ public class Book {
         this.author = author;
         this.amount = 1;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Book other = (Book) obj;
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        return Objects.equals(this.author, other.author);
+    }
+
     
 }
