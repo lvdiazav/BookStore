@@ -79,4 +79,15 @@ public class BookStoreController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
+    @GetMapping("/member/{id}")
+    public ResponseEntity<Member> findMemberById(@PathVariable long id) {
+        Member member = service.findMemberById(id);
+        if (member != null) {
+            logger.info("Member found by id is working appropiately");
+            return new ResponseEntity<>(member, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -8,7 +8,6 @@ import com.bookstore.bookstore.model.Book;
 import com.bookstore.bookstore.model.Member;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,7 +23,9 @@ public class BookStoreService {
 
     public BookStoreService() {
         books.add(new Book("Pana", "Vinicio"));
+        books.add(new Book("Perro", "Panardo"));
         members.add(new Member("Vinicio", 18));
+        members.add(new Member("Fausto", 16));
     }
     
     public List<Book> getBooks() {
@@ -40,11 +41,27 @@ public class BookStoreService {
     }
     
     public void addBook(Book book) {
-        BookStoreService.books.add(book);
+        boolean bookExist = false;
+        for (Book b : BookStoreService.books) {
+            if (b.equals(book)) {
+                bookExist = true;
+                b.setAmount(b.getAmount() + 1);
+                break;
+            }
+        }
+        if (!bookExist) {
+            BookStoreService.books.add(book);
+        }
     }
     
     public boolean addMember(Member member) {
-        if (member.getAge() < 10) {
+        boolean memberExist = false;
+        for (Member m : BookStoreService.members) {
+            if (m.equals(member)) {
+               memberExist = true; 
+            }
+        }
+        if (member.getAge() < 10 || memberExist) {
             return false;
         } else {
             BookStoreService.members.add(member);

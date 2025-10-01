@@ -29,7 +29,9 @@ public class Book {
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.title);
+        hash = 97 * hash + Objects.hashCode(this.author);
         return hash;
     }
 
@@ -50,6 +52,5 @@ public class Book {
         }
         return Objects.equals(this.author, other.author);
     }
-
     
 }

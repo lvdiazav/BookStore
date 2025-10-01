@@ -31,7 +31,9 @@ public class Member {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.name);
+        hash = 83 * hash + this.age;
         return hash;
     }
 
@@ -52,6 +54,5 @@ public class Member {
         }
         return Objects.equals(this.name, other.name);
     }
-    
     
 }
